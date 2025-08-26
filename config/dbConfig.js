@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 const colors = require("colors");
+require("dotenv").config();
 
 const connectDb = async () => {
   try {
-    const uri = "mongodb://localhost:27017/student";
+    const uri = process.env.MONGO_URI;
 
     const options = {
       useNewUrlParser: true,
@@ -13,10 +14,10 @@ const connectDb = async () => {
     };
 
     await mongoose.connect(uri, options);
-    console.log(`Server running on ${mongoose.connection.host}`.bgCyan.white);
+    console.log(`Connected to MongoDB Atlas at ${mongoose.connection.host}`.bgCyan.white);
   } catch (error) {
-    console.error(`Error connecting to database: ${error.message}`.bgRed);
-    process.exit(1); 
+    console.error(`Error connecting to MongoDB Atlas: ${error.message}`.bgRed);
+    process.exit(1);
   }
 };
 

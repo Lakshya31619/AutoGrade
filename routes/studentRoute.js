@@ -3,7 +3,6 @@ const authMiddleware = require("../middlewares/authMiddleware");
 const router = express.Router();
 const Student = require("../models/studentModel");
 
-// add new student
 router.post("/add-student", authMiddleware, async (req, res) => {
   try {
     const studentExists = await Student.findOne({
@@ -29,7 +28,6 @@ router.post("/add-student", authMiddleware, async (req, res) => {
   }
 });
 
-// get all students
 router.post("/get-all-students", authMiddleware, async (req, res) => {
   try {
     const students = await Student.find(req?.body ? req.body : {});
@@ -46,7 +44,6 @@ router.post("/get-all-students", authMiddleware, async (req, res) => {
   }
 });
 
-// get student by rollNo
 router.post("/get-student/:rollNo", authMiddleware, async (req, res) => {
   try {
     const student = await Student.findOne({
@@ -71,7 +68,6 @@ router.post("/get-student/:rollNo", authMiddleware, async (req, res) => {
   }
 });
 
-// update student
 router.post("/update-student/:rollNo", authMiddleware, async (req, res) => {
   try {
     const student = await Student.findOneAndUpdate(
@@ -98,7 +94,6 @@ router.post("/update-student/:rollNo", authMiddleware, async (req, res) => {
   }
 });
 
-// delete student
 router.post("/delete-student/:rollNo", authMiddleware, async (req, res) => {
   try {
     const student = await Student.findOneAndDelete({

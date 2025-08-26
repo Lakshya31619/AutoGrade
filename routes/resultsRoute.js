@@ -4,7 +4,6 @@ const router = express.Router();
 const Result = require("../models/resultsModel");
 const Student = require("../models/studentModel");
 
-//  add new result
 router.post("/add-result", authMiddleware, async (req, res) => {
   try {
     const resultExists = await Result.findOne({
@@ -30,7 +29,6 @@ router.post("/add-result", authMiddleware, async (req, res) => {
   }
 });
 
-// get all results
 router.post("/get-all-results", async (req, res) => {
   try {
     const results = await Result.find();
@@ -47,7 +45,6 @@ router.post("/get-all-results", async (req, res) => {
   }
 });
 
-// get result by id
 router.post("/get-result/:resultId", async (req, res) => {
   try {
     const result = await Result.findById(req.params.resultId);
@@ -64,7 +61,6 @@ router.post("/get-result/:resultId", async (req, res) => {
   }
 });
 
-// add student result
 router.post("/save-student-result", authMiddleware, async (req, res) => {
   try {
     const student = await Student.findById(req.body.studentId);
@@ -115,7 +111,6 @@ router.post("/save-student-result", authMiddleware, async (req, res) => {
   }
 });
 
-// get student result by id
 router.post("/get-student-result", async (req, res) => {
   try {
     const student = await Student.findOne({
@@ -154,7 +149,6 @@ router.post("/get-student-result", async (req, res) => {
   }
 });
 
-// delete result
 router.post("/delete-result/:resultId", authMiddleware, async (req, res) => {
   try {
     const result = await Result.findByIdAndDelete(req.params.resultId);
